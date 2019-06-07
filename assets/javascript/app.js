@@ -62,7 +62,8 @@ var triviaA = [
   {"a": "A: Keanu Reeves", "b": "B: Nicholas Cage", "c": "C: Bruce Willis", "d": "D: Bill Murray"}
 ];
 
-var triviaSolve = ["#answer2", "#answer4", "#answer2", "#answer2", "#answer3", "#answer3", "#answer4", "#answer3", "#answer3", "#answer2"];
+var triviaSolve = ["Lex Luther", "Labyrinth", "Robocop", "Richard Dreyfuss", "James Cameron", "Dustin Hoffman", "Psycho", "Chris Rock", "Dennis Hopper", "Nicholas Cage"];
+var triviaSolve2 = ["#answer2", "#answer4", "#answer2", "#answer2", "#answer3", "#answer3", "#answer4", "#answer3", "#answer3", "#answer2"];
 
 
 // Show first qestion and first set of answer choices
@@ -85,10 +86,6 @@ var wrongAnswers = 0;
 var thisQuestion = 0;
 
 
-var response1 = triviaA[thisQuestion].a;
-var response2 = triviaA[thisQuestion].b;
-var response3 = triviaA[thisQuestion].c;
-var response4 = triviaA[thisQuestion].b;
 
 
 $("#start").on("click", startUp);
@@ -124,74 +121,105 @@ function startUp() {
 
 
 $("#answer1").on("click", function() {
-  alert("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
-  // wait 2 secs
-  wrongAnswers++;
-  setQnA();
-  // wait();
+  if (thisQuestion < 10) {
+    $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
+    setTimeout(function() {
+      wrongAnswers++;
+      setQnA();
+      $("#messages").text("");
+    }, 2000);
+
+
+
+  } else {
+    $("#messages").text("Finished!");
+  }
+
 
 });
 
 $("#answer2").on("click", function() {
+  
+  if (thisQuestion < 10) {
   if ((thisQuestion == 1) || (thisQuestion == 3) || (thisQuestion == 4) || (thisQuestion == 10)) {
-    alert("Correct! Way to go!");
-    //wait 2 secs
-    rightAnswers++;
-    setQnA();
+    $("#messages").text("Correct! Way to go!");
+    setTimeout(function() {
+      rightAnswers++;
+      setQnA();
+      $("#messages").text("");
+    }, 2000);
+
 
   } else {
-    alert("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
-    // wait 2 secs
-    wrongAnswers++;
-    setQnA();
+    $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
+    setTimeout(function() {
+      wrongAnswers++;
+      setQnA();
+      $("#messages").text("");
+    }, 2000);
+ 
 
   };
+  } else {
+    $("#messages").text("Finished!")
+  }
 });
 
 $("#answer3").on("click", function() {
+  if (thisQuestion < 10) {
   if ((thisQuestion == 5) || (thisQuestion == 6) || (thisQuestion == 8) || (thisQuestion == 9)) {
-    alert("Correct! Way to go!");
-    //wait 2 secs
-    rightAnswers++;
-    setQnA();
+    $("#messages").text("Correct! Way to go!");
+    setTimeout(function() {
+      rightAnswers++;
+      setQnA();
+      $("#messages").text("");
+    }, 2000);
+
 
   } else {
-    alert("Wrong answer! The answer was " + triviaSolve[answerQuestion]+ "!");
-    // wait 2 secs
-    wrongAnswers++;
-    setQnA();
+    $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion]+ "!");
+    setTimeout(function() {
+      wrongAnswers++;
+      setQnA();
+      $("#messages").text("");
+    }, 2000);
+
  
   };
+  } else {
+    $("#messages").text("Finished!")
+  }
 });
 
 
 $("#answer4").on("click", function() {
+  if (thisQuestion < 11) {
   if ((thisQuestion == 2) || (thisQuestion == 7)) {
-    alert("Correct! Way to go!");
-    //wait 2 secs
-    rightAnswers++;
-    setQnA();
+    $("#messages").text("Correct! Way to go!");
+    setTimeout(function() {
+      rightAnswers++;
+      setQnA();
+      $("#messages").text("");
+    }, 2000);
+
   
   } else {
-    alert("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
-    // wait 2 secs
-    wrongAnswers++;
-    setQnA();
+    $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
+    setTimeout(function() {
+      wrongAnswers++;
+      setQnA();
+      $("#messages").text("");
+    }, 2000);
+
    
   };
+  } else {
+    $("#messages").text("Finished!")
+  }
 });
 
 
-// function wait() {
-//   for (var i = 1; i <= 5; i++) {
-//     var tick = function(i) {
-//         return function() {
-//             console.log(i);
-//         }
-//     };
-//     setTimeout(tick(i), 500 * i);
-//   }
-// };
+
 
 
 
@@ -207,14 +235,20 @@ $("#answer4").on("click", function() {
 //   }
 // }
 
-
-
-
 function reset() {
   time = 120;
   $("#display").text("02:00");
-  answer1is, answer2is, answer3is, answer4is = false;
+  thisQuestion = 0;
+  var rightAnswers = 0;
+  var wrongAnswers = 0;
+  startUp();
 };
+
+
+// function reset() {
+//   time = 120;
+//   $("#display").text("02:00");
+// };
 
 // function start() {
 //   if (!clockRunning) {
@@ -251,12 +285,5 @@ function timeConverter(t) {
 };
 
 
-if (time == 60) {
-  alert("60 seconds left!");
-};
-
-if (time == 0) {
-  alert("Time's up! You lost!")
-};
 
 
