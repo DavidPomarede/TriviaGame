@@ -8,9 +8,11 @@ window.onload = function() {
   // $("#answer4").on("click", answer4);
 };
 
+document.body.style.backgroundImage = "url('assets/images/memphis-colorful.png')";
+
 var intervalId;
 var clockRunning = false;
-var time = 120;
+var time = 30;
 var lap = 1;
 
 answer1is = "";
@@ -18,22 +20,6 @@ answer2is = "";
 answer3is = "";
 answer4is = "";
 
-function answer1() {
-  answer1is = true;
-  console.log(answer1is);
-}
-function answer2() {
-  answer2is = true;
-  console.log(answer2is);
-}
-function answer3() {
-  answer3is = true;
-  console.log(answer3is);
-}
-function answer4() {
-  answer4is = true;
-  console.log(answer4is);
-}
 
 
 var triviaQ = [
@@ -110,7 +96,7 @@ function setQnA() {
 function startUp() {
   if (!isRunning) {
     intervalId = setInterval(count, 1000);
-    clockRunning = true;
+    isRunning = true;
     setQnA();
 
   }
@@ -125,6 +111,7 @@ $("#answer1").on("click", function() {
     $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
     setTimeout(function() {
       wrongAnswers++;
+      time = 30;
       setQnA();
       $("#messages").text("");
     }, 2000);
@@ -132,7 +119,10 @@ $("#answer1").on("click", function() {
 
 
   } else {
-    $("#messages").text("Finished!");
+    $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+    clearInterval(intervalId);
+    clockRunning = false;
+    $("#display").text("00:00");
   }
 
 
@@ -145,6 +135,7 @@ $("#answer2").on("click", function() {
     $("#messages").text("Correct! Way to go!");
     setTimeout(function() {
       rightAnswers++;
+      time = 30;
       setQnA();
       $("#messages").text("");
     }, 2000);
@@ -154,6 +145,7 @@ $("#answer2").on("click", function() {
     $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
     setTimeout(function() {
       wrongAnswers++;
+      time = 30;
       setQnA();
       $("#messages").text("");
     }, 2000);
@@ -161,7 +153,10 @@ $("#answer2").on("click", function() {
 
   };
   } else {
-    $("#messages").text("Finished!")
+    $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+    clearInterval(intervalId);
+    clockRunning = false;
+    $("#display").text("00:00");
   }
 });
 
@@ -171,6 +166,7 @@ $("#answer3").on("click", function() {
     $("#messages").text("Correct! Way to go!");
     setTimeout(function() {
       rightAnswers++;
+      time = 30;
       setQnA();
       $("#messages").text("");
     }, 2000);
@@ -180,6 +176,7 @@ $("#answer3").on("click", function() {
     $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion]+ "!");
     setTimeout(function() {
       wrongAnswers++;
+      time = 30;
       setQnA();
       $("#messages").text("");
     }, 2000);
@@ -187,17 +184,21 @@ $("#answer3").on("click", function() {
  
   };
   } else {
-    $("#messages").text("Finished!")
+    $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+    clearInterval(intervalId);
+    clockRunning = false;
+    $("#display").text("00:00");
   }
 });
 
 
 $("#answer4").on("click", function() {
-  if (thisQuestion < 11) {
+  if (thisQuestion < 10) {
   if ((thisQuestion == 2) || (thisQuestion == 7)) {
     $("#messages").text("Correct! Way to go!");
     setTimeout(function() {
       rightAnswers++;
+      time = 30;
       setQnA();
       $("#messages").text("");
     }, 2000);
@@ -207,6 +208,7 @@ $("#answer4").on("click", function() {
     $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
     setTimeout(function() {
       wrongAnswers++;
+      time = 30;
       setQnA();
       $("#messages").text("");
     }, 2000);
@@ -214,30 +216,17 @@ $("#answer4").on("click", function() {
    
   };
   } else {
-    $("#messages").text("Finished!")
+    $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+    clearInterval(intervalId);
+    clockRunning = false;
+    $("#display").text("00:00");
   }
 });
 
 
-
-
-
-
-// function getAnswers(input) {
-//   if (input = "#answer1") {
-//     return triviaA[answerQuestion].a;
-//   } else if (input = "#answer2") {
-//     return triviaA[answerQuestion].b;
-//   } else if (input = "#answer3") {
-//     return triviaA[answerQuestion].c;
-//   } else {
-//     return triviaA[answerQuestion].d;
-//   }
-// }
-
 function reset() {
-  time = 120;
-  $("#display").text("02:00");
+  time = 30;
+  $("#display").text("00:30");
   thisQuestion = 0;
   var rightAnswers = 0;
   var wrongAnswers = 0;
@@ -245,28 +234,34 @@ function reset() {
 };
 
 
-// function reset() {
-//   time = 120;
-//   $("#display").text("02:00");
-// };
-
-// function start() {
-//   if (!clockRunning) {
-//     intervalId = setInterval(count, 1000);
-//     clockRunning = true;
-
-//   }
-// };
-
 function stop() {
   clearInterval(intervalId);
   clockRunning = false;
 };
 
 function count() {
+  if (time === 0) {
+    clearTimeout(time);
+    timeOut();
+  } else {
   time--;
   var converted = timeConverter(time);
   $("#display").text(converted);
+  }
+};
+
+function timeOut() {
+  $("#messages").text("You ran out of time!");
+  setTimeout(function() {
+    wrongAnswers++;
+    setQnA();
+    $("#messages").text("");
+  }, 2000);
+  time = 30;
+  $("#display").text("00:30");
+  // setQnA();
+  // startUp();
+
 };
 
 function timeConverter(t) {
@@ -286,4 +281,14 @@ function timeConverter(t) {
 
 
 
-
+if (time === 0) {
+  setTimeout(function() {
+    wrongAnswers++;
+    setQnA();
+    $("#messages").text("Time's up!");
+  }, 2000);
+  if (!isRunning) {
+    intervalId = setInterval(count, 1000);
+    isRunning = true;
+  }
+}
