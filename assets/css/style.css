@@ -12,4 +12,22 @@ li {
 
 img {
     max-width: 90%;
+    border-radius: 20%;
+}
+
+.container {
+    background-color: aquamarine;
+}
+
+.col {
+    background-color: rgb(243, 220, 17);
+}
+
+.list-group {
+    padding-bottom: 2rem;
+}
+
+.list-group-item {
+    background-color: rgb(208, 255, 0);
+    border: none;
 }

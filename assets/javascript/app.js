@@ -28,11 +28,11 @@ var triviaQ = [
   "3) Serve the public trust. Protect the innocent. Uphold the law. whose mantra?",
   "4) Who played the obsessive character at the center of Close Encounters of the Third Kind?",
   "5) Who made the 1989 underwater sci-fi chiller The Abyss?",
-  "6) Who was The Graduate in the film of the same name?",
+  "6) Who was the graduate in the film of the same name?",
   "7) Which 1960 Hitchcock film has the most famous shower scene ever?",
   "8) Which comedian wrote and starred in the iconic film about 90's rap, CB4?",
   "9) Easy Rider starred Peter Fonda, Jack Nicholson and Dennis Hopper. Which one directed the movie?",
-  "10) In the movie Moonstruck, starring Cher and Danny Aiello, who played the one-handed baker that Cher eventually falls in love with?"
+  "10) In the movie Moonstruck, starring Cher and Danny Aiello, who played the grumpy one-handed baker that Cher eventually falls in love with?"
 ];
 
 var triviaA = [
@@ -423,20 +423,20 @@ function timeConverter(t) {
 function showGif() {
   var imgURL = gifs[thisQuestion];
   var image = $("<img>").attr("src", imgURL);
-  $("<img>").attr("class", "thumbnail rounded");
+  $("<img>").attr("class", "rounded");
   $('#images').append(image); 
 };
 
 function showMessage() {
   var messageBox = $("<li>");
-  messageBox.attr("class", "list-group-item alert-warning alpha");
+  messageBox.attr("class", "list-group-item text-center alert-warning alpha");
   messageBox.attr("id", "messages");
   $('.list-group').append(messageBox); 
 };
 
 function showImage() {
   var imageBox = $("<li>");
-  imageBox.attr("class", "list-group-item alert-warning alpha");
+  imageBox.attr("class", "list-group-item text-center alert-warning alpha");
   imageBox.attr("id", "images");
   $('.list-group').append(imageBox); 
 };

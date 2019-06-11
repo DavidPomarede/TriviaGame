@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Pacifico|Quattrocento&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Trivia Game</title>
   </head>
@@ -14,20 +15,19 @@
       <div class="row justify-content-center">
         <div class="col col-sm-5">
           <div class="container">
-              <br><br>
+              <br>
               <ul class="list-group">
-                <li class="list-group-item text-center"><h1>Classic Film Trivia</h1></li>
+                <li class="list-group-item text-center">
+                    <h1>Classic Film Trivia</h1>                    
+                    <span class="fa fa-film" style="font-size:48px;color:red"></span></li>
                 <li class="list-group-item text-center quattro"><div id="display" class="alert-heading">00:00</div></li>
                 <li class="list-group-item text-center" id="buttonSpace">
                   <button id="start" class="quattro">Start</button>
-                  <!-- <button id="reset" class="quattro">Reset</button></li> -->
                 <li class="list-group-item invisible alpha" id="question"></li>
                 <li class="list-group-item invisible alpha" id="answer1"></li>
                 <li class="list-group-item invisible alpha" id="answer2"></li>
                 <li class="list-group-item invisible alpha" id="answer3"></li>
                 <li class="list-group-item invisible alpha" id="answer4"></li>
-                <!-- <li class="list-group-item alert-warning alpha" id="messages"></li>
-                <li class="list-group-item text-center" id="images"></li> -->
               </ul>
           </div>
         </div>
