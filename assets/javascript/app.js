@@ -87,7 +87,6 @@ function setQnA() {
   $("#message").attr("class", "list-group-item visible alert-warning");
   thisQuestion++;
   answerQuestion = thisQuestion - 1;
-
 }
 
 function startUp() {
@@ -95,19 +94,19 @@ function startUp() {
     intervalId = setInterval(count, 1000);
     isRunning = true;
     setQnA();
-
   }
 };
 
 // var questionA = [];
 // var questionB = [1,3,4];
-// var questionC = [5,6,8,9, 10];
+// var questionC = [5,6,8,9,10];
 // var questionD = [2,7];
 
-// $('#answer1').on("click", function() {
+// $('#answer2').on("click", function() {
 //   if (thisQuestion < 10) {
-//     for (var k = 0; k < thisQuestion; k++) {
-//       if (thisQuestion == questionA[k]) {
+//     for (var k = 0; k <= thisQuestion; k++) {
+//       if (thisQuestion == questionB[k]) {
+//         console.log("yeppers");
 //         rightAnswer();
 //       } else {
 //         wrongAnswer();
@@ -203,6 +202,7 @@ $("#answer2").on("click", function() {
       }, 2000);
     };
   } else {
+    rightAnswers++;
     $("#message").attr("class", "list-group-item visible alert-warning");
     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
     clearInterval(intervalId);
@@ -233,6 +233,7 @@ $("#answer3").on("click", function() {
     }, 2000);
   };
   } else {
+    wrongAnswers++;
     $("#message").attr("class", "list-group-item visible alert-warning");
     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
     clearInterval(intervalId);
@@ -264,6 +265,7 @@ $("#answer4").on("click", function() {
     }, 2000);
   };
   } else {
+    wrongAnswers++;
     $("#message").attr("class", "list-group-item visible alert-warning");
     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
     clearInterval(intervalId);
@@ -281,7 +283,7 @@ $("#answer4").on("click", function() {
 //     setQnA();
 //     $("#messages").text("");
 //   }, 2000);
-// }
+// };
 
 // function wrongAnswer() {
 //   $("#message").attr("class", "list-group-item visible alert-warning");
@@ -292,7 +294,7 @@ $("#answer4").on("click", function() {
 //     setQnA();
 //     $("#messages").text("");
 //   }, 2000);
-// }
+// };
 
 // function finish() {
 //     $("#message").attr("class", "list-group-item visible alert-warning");
@@ -300,7 +302,7 @@ $("#answer4").on("click", function() {
 //     clearInterval(intervalId);
 //     clockRunning = false;
 //     $("#display").text("00:00");
-// }
+// };
 
 function reset() {
   time = 30;
