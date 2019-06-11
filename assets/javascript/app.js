@@ -88,6 +88,12 @@ function setQnA() {
   $("#answer2").text(triviaA[thisQuestion].b);
   $("#answer3").text(triviaA[thisQuestion].c);
   $("#answer4").text(triviaA[thisQuestion].d);
+  $("#question").attr("class", "list-group-item visible");
+  $("#answer1").attr("class", "list-group-item visible");
+  $("#answer2").attr("class", "list-group-item visible");
+  $("#answer3").attr("class", "list-group-item visible");
+  $("#answer4").attr("class", "list-group-item visible");
+  $("#message").attr("class", "list-group-item visible alert-warning");
   thisQuestion++;
   answerQuestion = thisQuestion - 1;
 
@@ -108,6 +114,7 @@ function startUp() {
 
 $("#answer1").on("click", function() {
   if (thisQuestion < 10) {
+    $("#message").attr("class", "list-group-item visible alert-warning");
     $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
     setTimeout(function() {
       wrongAnswers++;
@@ -119,6 +126,7 @@ $("#answer1").on("click", function() {
 
 
   } else {
+    $("#message").attr("class", "list-group-item visible alert-warning");
     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
     clearInterval(intervalId);
     clockRunning = false;
@@ -132,6 +140,7 @@ $("#answer2").on("click", function() {
   
   if (thisQuestion < 10) {
   if ((thisQuestion == 1) || (thisQuestion == 3) || (thisQuestion == 4) || (thisQuestion == 10)) {
+    $("#message").attr("class", "list-group-item visible alert-warning");
     $("#messages").text("Correct! Way to go!");
     setTimeout(function() {
       rightAnswers++;
@@ -142,6 +151,7 @@ $("#answer2").on("click", function() {
 
 
   } else {
+    $("#message").attr("class", "list-group-item visible alert-warning");
     $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
     setTimeout(function() {
       wrongAnswers++;
@@ -153,6 +163,7 @@ $("#answer2").on("click", function() {
 
   };
   } else {
+    $("#message").attr("class", "list-group-item visible alert-warning");
     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
     clearInterval(intervalId);
     clockRunning = false;
@@ -163,6 +174,7 @@ $("#answer2").on("click", function() {
 $("#answer3").on("click", function() {
   if (thisQuestion < 10) {
   if ((thisQuestion == 5) || (thisQuestion == 6) || (thisQuestion == 8) || (thisQuestion == 9)) {
+    $("#message").attr("class", "list-group-item visible alert-warning");
     $("#messages").text("Correct! Way to go!");
     setTimeout(function() {
       rightAnswers++;
@@ -173,6 +185,7 @@ $("#answer3").on("click", function() {
 
 
   } else {
+    $("#message").attr("class", "list-group-item visible alert-warning");
     $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion]+ "!");
     setTimeout(function() {
       wrongAnswers++;
@@ -184,6 +197,7 @@ $("#answer3").on("click", function() {
  
   };
   } else {
+    $("#message").attr("class", "list-group-item visible alert-warning");
     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
     clearInterval(intervalId);
     clockRunning = false;
@@ -195,6 +209,7 @@ $("#answer3").on("click", function() {
 $("#answer4").on("click", function() {
   if (thisQuestion < 10) {
   if ((thisQuestion == 2) || (thisQuestion == 7)) {
+    $("#message").attr("class", "list-group-item visible alert-warning");
     $("#messages").text("Correct! Way to go!");
     setTimeout(function() {
       rightAnswers++;
@@ -205,6 +220,7 @@ $("#answer4").on("click", function() {
 
   
   } else {
+    $("#message").attr("class", "list-group-item visible alert-warning");
     $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
     setTimeout(function() {
       wrongAnswers++;
@@ -216,6 +232,7 @@ $("#answer4").on("click", function() {
    
   };
   } else {
+    $("#message").attr("class", "list-group-item visible alert-warning");
     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
     clearInterval(intervalId);
     clockRunning = false;
