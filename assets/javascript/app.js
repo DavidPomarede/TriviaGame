@@ -1,13 +1,3 @@
-// window.onload = function() {
-//   $("#stop").on("click", stop);
-//   $("#reset").on("click", reset);
-//   $("#start").on("click", start);
-//   $("#answer1").on("click", answer1);
-//   $("#answer2").on("click", answer2);
-//   $("#answer3").on("click", answer3);
-//   $("#answer4").on("click", answer4);
-// };
-
 document.body.style.backgroundImage = "url('assets/images/memphis-colorful.png')";
 
 var intervalId;
@@ -19,8 +9,6 @@ answer1is = "";
 answer2is = "";
 answer3is = "";
 answer4is = "";
-
-
 
 var triviaQ = [
   "1) What is the name of the villain in the first Superman movie (1980) played by Gene Hackman?",
@@ -50,7 +38,6 @@ var triviaA = [
 
 var triviaSolve = ["Lex Luther", "Labyrinth", "Robocop", "Richard Dreyfuss", "James Cameron", "Dustin Hoffman", "Psycho", "Chris Rock", "Dennis Hopper", "Nicholas Cage"];
 var triviaSolve2 = ["#answer2", "#answer4", "#answer2", "#answer2", "#answer3", "#answer3", "#answer4", "#answer3", "#answer3", "#answer2"];
-
 
 var gifs = [
   0,
@@ -87,7 +74,6 @@ var thisQuestion = 0;
 
 $("#start").on("click", startUp);
 
-
 function setQnA() {
   $("#question").text(triviaQ[thisQuestion]);
   $("#answer1").text(triviaA[thisQuestion].a);
@@ -117,249 +103,95 @@ function startUp() {
   }
 };
 
-// var questionA = [];
-// var questionB = [1,3,4];
-// var questionC = [5,6,8,9,10];
-// var questionD = [2,7];
-
-// $('#answer2').on("click", function() {
-//   if (thisQuestion < 10) {
-//     for (var k = 0; k <= thisQuestion; k++) {
-//       if (thisQuestion == questionB[k]) {
-//         console.log("yeppers");
-//         rightAnswer();
-//       } else {
-//         wrongAnswer();
-//       }
-//     }
-//   } else {
-//     finish();
-//   }
-// });
-
-// $('#answer2').on("click", function() {
-//   if (thisQuestion < 10) {
-//     for (var l = 0; l < thisQuestion; l++) {
-//       if (thisQuestion == questionB[l]) {
-//         rightAnswer();
-//       } else {
-//         wrongAnswer();
-//       }
-//     }
-//   } else {
-//     rightAnswers++;
-//     finish();    
-//   }
-// });
-
-// $('#answer3').on("click", function() {
-//   if (thisQuestion < 10) {
-//     for (var m = 0; m < thisQuestion; m++) {
-//       if (thisQuestion == questionC[m]) {
-//         rightAnswer();
-//       } else {
-//         wrongAnswer();
-//       }
-//     }
-//   } else {
-//     finish();
-//   }
-// });
-
-// $('#answer4').on("click", function() {
-//   if (thisQuestion < 10) {
-//     for (var n = 0; n < thisQuestion; n++) {
-//       if (thisQuestion == questionD[n]) {
-//         rightAnswer();
-//       } else {
-//         wrongAnswer();
-//       }
-//     }
-//   } else {
-//     finish();
-//   }
-// });
-
 $("#answer1").on("click", function() {
   if (thisQuestion < 10) {
-    showMessage();
-    showImage();
-    $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
-    showGif();
-    setTimeout(function() {
-      wrongAnswers++;
-      time = 30;
-      setQnA();
-      $("#messages").text("");
-    }, 2000);
+    wrongAnswer();
   } else {
-    wrongAnswers++;
-    showMessage();
-    showImage();
-    $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
-    showGif();
-    clearInterval(intervalId);
-    clockRunning = false;
-    $("#display").text("00:00");
-    resetButtonF();
-  }
+    finish();
+}
 });
 
 $("#answer2").on("click", function() {
   if (thisQuestion < 10) {
     if ((thisQuestion == 1) || (thisQuestion == 3) || (thisQuestion == 4) || (thisQuestion == 10)) {
-      showMessage();
-      showImage();
-      $("#messages").text("Correct! Way to go!");
-      showGif();
-      setTimeout(function() {
-        rightAnswers++;
-        time = 30;
-        setQnA();
-        $("#messages").text("");
-      }, 2000);
+      rightAnswer();
     } else {
-      showMessage();
-      showImage();
-      $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
-      showGif();
-      setTimeout(function() {
-        wrongAnswers++;
-        time = 30;
-        setQnA();
-        $("#messages").text("");
-      }, 2000);
+      wrongAnswer();
     };
   } else {
-    rightAnswers++;
-    showMessage();
-    showImage();
-    $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
-    showGif();
-    clearInterval(intervalId);
-    clockRunning = false;
-    $("#display").text("00:00");
-    resetButtonF();
+    finish();
   }
 });
 
 $("#answer3").on("click", function() {
   if (thisQuestion < 10) {
   if ((thisQuestion == 5) || (thisQuestion == 6) || (thisQuestion == 8) || (thisQuestion == 9)) {
-    showMessage();
-    showImage();
-    $("#messages").text("Correct! Way to go!");
-    showGif();
-    setTimeout(function() {
-      rightAnswers++;
-      time = 30;
-      setQnA();
-      $("#messages").text("");
-    }, 2000);
+    rightAnswer();
   } else {
-    showMessage();
-    showImage();
-    $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion]+ "!");
-    showGif();
-    setTimeout(function() {
-      wrongAnswers++;
-      time = 30;
-      setQnA();
-      $("#messages").text("");
-    }, 2000);
+    wrongAnswer();
   };
-  } else {
-    wrongAnswers++;
-    showMessage();
-    showImage();
-    $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
-    showGif();
-    clearInterval(intervalId);
-    clockRunning = false;
-    $("#display").text("00:00");
-    resetButtonF();
-  }
+} else {
+  finish();
+}
 });
-
 
 $("#answer4").on("click", function() {
   if (thisQuestion < 10) {
   if ((thisQuestion == 2) || (thisQuestion == 7)) {
-    showMessage();
-    showImage();
-    $("#messages").text("Correct! Way to go!");
-    showGif();
-    setTimeout(function() {
-      rightAnswers++;
-      time = 30;
-      setQnA();
-      $("#messages").text("");
-    }, 2000);
+    rightAnswer();
   } else {
-    showMessage();
-    showImage();
-    $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
-    showGif();
-    setTimeout(function() {
-      wrongAnswers++;
-      time = 30;
-      setQnA();
-      $("#messages").text("");
-    }, 2000);
+    wrongAnswer();
   };
-  } else {
-    wrongAnswers++;
-    showMessage();
-    showImage();
-    $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
-    showGif();
-    clearInterval(intervalId);
-    clockRunning = false;
-    $("#display").text("00:00");
-    resetButtonF();
-  }
+} else {
+  finish();
+}
 });
 
-// function rightAnswer() {
-//   $("#message").attr("class", "list-group-item visible alert-warning");
-//   $("#messages").text("Correct! Way to go!");
-//   setTimeout(function() {
-//     rightAnswers++;
-//     time = 30;
-//     setQnA();
-//     $("#messages").text("");
-//   }, 2000);
-// };
+function rightAnswer() {
+  showMessage();
+  showImage();
+  $("#messages").text("Correct! Way to go!");
+  showGif();
+  setTimeout(function() {
+    rightAnswers++;
+    time = 30;
+    setQnA();
+    $("#messages").text("");
+  }, 2000);
+};
 
-// function wrongAnswer() {
-//   $("#message").attr("class", "list-group-item visible alert-warning");
-//   $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
-//   setTimeout(function() {
-//     wrongAnswers++;
-//     time = 30;
-//     setQnA();
-//     $("#messages").text("");
-//   }, 2000);
-// };
+function wrongAnswer() {
+  showMessage();
+  showImage();
+  $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
+  showGif();
+  setTimeout(function() {
+    wrongAnswers++;
+    time = 30;
+    setQnA();
+    $("#messages").text("");
+  }, 2000);
+};
 
-// function finish() {
-//     $("#message").attr("class", "list-group-item visible alert-warning");
-//     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
-//     clearInterval(intervalId);
-//     clockRunning = false;
-//     $("#display").text("00:00");
-// };
+function finish() {
+  rightAnswers++;
+  showMessage();
+  showImage();
+  $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+  showGif();
+  clearInterval(intervalId);
+  clockRunning = false;
+  $("#display").text("00:00");
+  resetButtonF();
+};
 
 function reset() {
-  // time = 30;
   isRunning = false;
   $("#display").text("00:30");
   $("#messages").text("");
   rightAnswers = 0;
   wrongAnswers = 0;
   thisQuestion = 0;
-  // clearTimeout(time);
-  // timeOut();
   startUp();
 };
 
@@ -460,5 +292,3 @@ function startButtonF() {
   startButton.on("click", startUp);
   $('#buttonSpace').append(startButton); 
 };
-
-// $("#reset").on("click", reset);
