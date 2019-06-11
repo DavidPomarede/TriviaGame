@@ -13,7 +13,7 @@ answer4is = "";
 var triviaQ = [
   "1) What is the name of the villain in the first Superman movie (1980) played by Gene Hackman?",
   "2) In which movie David Bowie appears as Jareth the Goblin King?",
-  "3) Serve the public trust. Protect the innocent. Uphold the law. whose mantra?",
+  "3) Serve the public trust. Protect the innocent. Uphold the law. Whose mantra?",
   "4) Who played the obsessive character at the center of Close Encounters of the Third Kind?",
   "5) Who made the 1989 underwater sci-fi chiller The Abyss?",
   "6) Who was the graduate in the film of the same name?",
