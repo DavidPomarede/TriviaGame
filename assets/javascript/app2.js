@@ -99,208 +99,208 @@ function startUp() {
   }
 };
 
-// var questionA = [];
-// var questionB = [1,3,4];
-// var questionC = [5,6,8,9, 10];
-// var questionD = [2,7];
+var questionA = [];
+var questionB = [1,3,4];
+var questionC = [5,6,8,9, 10];
+var questionD = [2,7];
 
-// $('#answer1').on("click", function() {
-//   if (thisQuestion < 10) {
-//     for (var k = 0; k < thisQuestion; k++) {
-//       if (thisQuestion == questionA[k]) {
-//         rightAnswer();
-//       } else {
-//         wrongAnswer();
-//       }
-//     }
-//   } else {
-//     finish();
-//   }
-// });
-
-// $('#answer2').on("click", function() {
-//   if (thisQuestion < 10) {
-//     for (var l = 0; l < thisQuestion; l++) {
-//       if (thisQuestion == questionB[l]) {
-//         rightAnswer();
-//       } else {
-//         wrongAnswer();
-//       }
-//     }
-//   } else {
-//     rightAnswers++;
-//     finish();    
-//   }
-// });
-
-// $('#answer3').on("click", function() {
-//   if (thisQuestion < 10) {
-//     for (var m = 0; m < thisQuestion; m++) {
-//       if (thisQuestion == questionC[m]) {
-//         rightAnswer();
-//       } else {
-//         wrongAnswer();
-//       }
-//     }
-//   } else {
-//     finish();
-//   }
-// });
-
-// $('#answer4').on("click", function() {
-//   if (thisQuestion < 10) {
-//     for (var n = 0; n < thisQuestion; n++) {
-//       if (thisQuestion == questionD[n]) {
-//         rightAnswer();
-//       } else {
-//         wrongAnswer();
-//       }
-//     }
-//   } else {
-//     finish();
-//   }
-// });
-
-$("#answer1").on("click", function() {
+$('#answer1').on("click", function() {
   if (thisQuestion < 10) {
-    $("#message").attr("class", "list-group-item visible alert-warning");
-    $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
-    setTimeout(function() {
-      wrongAnswers++;
-      time = 30;
-      setQnA();
-      $("#messages").text("");
-    }, 2000);
+    for (var k = 0; k < thisQuestion; k++) {
+      if (thisQuestion == questionA[k]) {
+        rightAnswer();
+      } else {
+        wrongAnswer();
+      }
+    }
   } else {
-    wrongAnswers++;
-    $("#message").attr("class", "list-group-item visible alert-warning");
-    $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
-    clearInterval(intervalId);
-    clockRunning = false;
-    $("#display").text("00:00");
+    finish();
   }
 });
 
-$("#answer2").on("click", function() {
+$('#answer2').on("click", function() {
   if (thisQuestion < 10) {
-    if ((thisQuestion == 1) || (thisQuestion == 3) || (thisQuestion == 4) || (thisQuestion == 10)) {
-      $("#message").attr("class", "list-group-item visible alert-warning");
-      $("#messages").text("Correct! Way to go!");
-      setTimeout(function() {
-        rightAnswers++;
-        time = 30;
-        setQnA();
-        $("#messages").text("");
-      }, 2000);
-    } else {
-      $("#message").attr("class", "list-group-item visible alert-warning");
-      $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
-      setTimeout(function() {
-        wrongAnswers++;
-        time = 30;
-        setQnA();
-        $("#messages").text("");
-      }, 2000);
-    };
+    for (var l = 0; l < thisQuestion; l++) {
+      if (thisQuestion == questionB[l]) {
+        rightAnswer();
+      } else {
+        wrongAnswer();
+      }
+    }
   } else {
-    $("#message").attr("class", "list-group-item visible alert-warning");
-    $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
-    clearInterval(intervalId);
-    clockRunning = false;
-    $("#display").text("00:00");
+    rightAnswers++;
+    finish();    
   }
 });
 
-$("#answer3").on("click", function() {
+$('#answer3').on("click", function() {
   if (thisQuestion < 10) {
-  if ((thisQuestion == 5) || (thisQuestion == 6) || (thisQuestion == 8) || (thisQuestion == 9)) {
-    $("#message").attr("class", "list-group-item visible alert-warning");
-    $("#messages").text("Correct! Way to go!");
-    setTimeout(function() {
-      rightAnswers++;
-      time = 30;
-      setQnA();
-      $("#messages").text("");
-    }, 2000);
+    for (var m = 0; m < thisQuestion; m++) {
+      if (thisQuestion == questionC[m]) {
+        rightAnswer();
+      } else {
+        wrongAnswer();
+      }
+    }
   } else {
-    $("#message").attr("class", "list-group-item visible alert-warning");
-    $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion]+ "!");
-    setTimeout(function() {
-      wrongAnswers++;
-      time = 30;
-      setQnA();
-      $("#messages").text("");
-    }, 2000);
-  };
-  } else {
-    $("#message").attr("class", "list-group-item visible alert-warning");
-    $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
-    clearInterval(intervalId);
-    clockRunning = false;
-    $("#display").text("00:00");
+    finish();
   }
 });
 
-
-$("#answer4").on("click", function() {
+$('#answer4').on("click", function() {
   if (thisQuestion < 10) {
-  if ((thisQuestion == 2) || (thisQuestion == 7)) {
-    $("#message").attr("class", "list-group-item visible alert-warning");
-    $("#messages").text("Correct! Way to go!");
-    setTimeout(function() {
-      rightAnswers++;
-      time = 30;
-      setQnA();
-      $("#messages").text("");
-    }, 2000);
+    for (var n = 0; n < thisQuestion; n++) {
+      if (thisQuestion == questionD[n]) {
+        rightAnswer();
+      } else {
+        wrongAnswer();
+      }
+    }
   } else {
-    $("#message").attr("class", "list-group-item visible alert-warning");
-    $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
-    setTimeout(function() {
-      wrongAnswers++;
-      time = 30;
-      setQnA();
-      $("#messages").text("");
-    }, 2000);
-  };
-  } else {
-    $("#message").attr("class", "list-group-item visible alert-warning");
-    $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
-    clearInterval(intervalId);
-    clockRunning = false;
-    $("#display").text("00:00");
+    finish();
   }
 });
 
-// function rightAnswer() {
-//   $("#message").attr("class", "list-group-item visible alert-warning");
-//   $("#messages").text("Correct! Way to go!");
-//   setTimeout(function() {
-//     rightAnswers++;
-//     time = 30;
-//     setQnA();
-//     $("#messages").text("");
-//   }, 2000);
-// }
-
-// function wrongAnswer() {
-//   $("#message").attr("class", "list-group-item visible alert-warning");
-//   $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
-//   setTimeout(function() {
+// $("#answer1").on("click", function() {
+//   if (thisQuestion < 10) {
+//     $("#message").attr("class", "list-group-item visible alert-warning");
+//     $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
+//     setTimeout(function() {
+//       wrongAnswers++;
+//       time = 30;
+//       setQnA();
+//       $("#messages").text("");
+//     }, 2000);
+//   } else {
 //     wrongAnswers++;
-//     time = 30;
-//     setQnA();
-//     $("#messages").text("");
-//   }, 2000);
-// }
-
-// function finish() {
 //     $("#message").attr("class", "list-group-item visible alert-warning");
 //     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
 //     clearInterval(intervalId);
 //     clockRunning = false;
 //     $("#display").text("00:00");
-// }
+//   }
+// });
+
+// $("#answer2").on("click", function() {
+//   if (thisQuestion < 10) {
+//     if ((thisQuestion == 1) || (thisQuestion == 3) || (thisQuestion == 4) || (thisQuestion == 10)) {
+//       $("#message").attr("class", "list-group-item visible alert-warning");
+//       $("#messages").text("Correct! Way to go!");
+//       setTimeout(function() {
+//         rightAnswers++;
+//         time = 30;
+//         setQnA();
+//         $("#messages").text("");
+//       }, 2000);
+//     } else {
+//       $("#message").attr("class", "list-group-item visible alert-warning");
+//       $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
+//       setTimeout(function() {
+//         wrongAnswers++;
+//         time = 30;
+//         setQnA();
+//         $("#messages").text("");
+//       }, 2000);
+//     };
+//   } else {
+//     $("#message").attr("class", "list-group-item visible alert-warning");
+//     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+//     clearInterval(intervalId);
+//     clockRunning = false;
+//     $("#display").text("00:00");
+//   }
+// });
+
+// $("#answer3").on("click", function() {
+//   if (thisQuestion < 10) {
+//   if ((thisQuestion == 5) || (thisQuestion == 6) || (thisQuestion == 8) || (thisQuestion == 9)) {
+//     $("#message").attr("class", "list-group-item visible alert-warning");
+//     $("#messages").text("Correct! Way to go!");
+//     setTimeout(function() {
+//       rightAnswers++;
+//       time = 30;
+//       setQnA();
+//       $("#messages").text("");
+//     }, 2000);
+//   } else {
+//     $("#message").attr("class", "list-group-item visible alert-warning");
+//     $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion]+ "!");
+//     setTimeout(function() {
+//       wrongAnswers++;
+//       time = 30;
+//       setQnA();
+//       $("#messages").text("");
+//     }, 2000);
+//   };
+//   } else {
+//     $("#message").attr("class", "list-group-item visible alert-warning");
+//     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+//     clearInterval(intervalId);
+//     clockRunning = false;
+//     $("#display").text("00:00");
+//   }
+// });
+
+
+// $("#answer4").on("click", function() {
+//   if (thisQuestion < 10) {
+//   if ((thisQuestion == 2) || (thisQuestion == 7)) {
+//     $("#message").attr("class", "list-group-item visible alert-warning");
+//     $("#messages").text("Correct! Way to go!");
+//     setTimeout(function() {
+//       rightAnswers++;
+//       time = 30;
+//       setQnA();
+//       $("#messages").text("");
+//     }, 2000);
+//   } else {
+//     $("#message").attr("class", "list-group-item visible alert-warning");
+//     $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
+//     setTimeout(function() {
+//       wrongAnswers++;
+//       time = 30;
+//       setQnA();
+//       $("#messages").text("");
+//     }, 2000);
+//   };
+//   } else {
+//     $("#message").attr("class", "list-group-item visible alert-warning");
+//     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+//     clearInterval(intervalId);
+//     clockRunning = false;
+//     $("#display").text("00:00");
+//   }
+// });
+
+function rightAnswer() {
+  $("#message").attr("class", "list-group-item visible alert-warning");
+  $("#messages").text("Correct! Way to go!");
+  setTimeout(function() {
+    rightAnswers++;
+    time = 30;
+    setQnA();
+    $("#messages").text("");
+  }, 2000);
+}
+
+function wrongAnswer() {
+  $("#message").attr("class", "list-group-item visible alert-warning");
+  $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
+  setTimeout(function() {
+    wrongAnswers++;
+    time = 30;
+    setQnA();
+    $("#messages").text("");
+  }, 2000);
+}
+
+function finish() {
+    $("#message").attr("class", "list-group-item visible alert-warning");
+    $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+    clearInterval(intervalId);
+    clockRunning = false;
+    $("#display").text("00:00");
+}
 
 function reset() {
   time = 30;
