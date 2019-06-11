@@ -1,12 +1,12 @@
-window.onload = function() {
-  $("#stop").on("click", stop);
-  $("#reset").on("click", reset);
-  $("#start").on("click", start);
-  // $("#answer1").on("click", answer1);
-  // $("#answer2").on("click", answer2);
-  // $("#answer3").on("click", answer3);
-  // $("#answer4").on("click", answer4);
-};
+// window.onload = function() {
+//   $("#stop").on("click", stop);
+//   $("#reset").on("click", reset);
+//   $("#start").on("click", start);
+//   $("#answer1").on("click", answer1);
+//   $("#answer2").on("click", answer2);
+//   $("#answer3").on("click", answer3);
+//   $("#answer4").on("click", answer4);
+// };
 
 document.body.style.backgroundImage = "url('assets/images/memphis-colorful.png')";
 
@@ -25,14 +25,14 @@ answer4is = "";
 var triviaQ = [
   "1) What is the name of the villain in the first Superman movie (1980) played by Gene Hackman?",
   "2) In which movie David Bowie appears as Jareth the Goblin King?",
-  "3) Serve the trust. Protect the innocent. Uphold the law. whose mantra?",
+  "3) Serve the public trust. Protect the innocent. Uphold the law. whose mantra?",
   "4) Who played the obsessive character at the center of Close Encounters of the Third Kind?",
   "5) Who made the 1989 underwater sci-fi chiller The Abyss?",
   "6) Who was The Graduate in the film of the same name?",
   "7) Which 1960 Hitchcock film has the most famous shower scene ever?",
   "8) Which comedian wrote and starred in the iconic film about 90's rap, CB4?",
   "9) Easy Rider starred Peter Fonda, Jack Nicholson and Dennis Hopper. Which one directed the movie?",
-  "10) In the movie Moonstruck starring Cher and Danny Aiello, who played the one-handed baker that Cher falls in love with?"
+  "10) In the movie Moonstruck, starring Cher and Danny Aiello, who played the one-handed baker that Cher eventually falls in love with?"
 ];
 
 var triviaA = [
@@ -51,6 +51,20 @@ var triviaA = [
 var triviaSolve = ["Lex Luther", "Labyrinth", "Robocop", "Richard Dreyfuss", "James Cameron", "Dustin Hoffman", "Psycho", "Chris Rock", "Dennis Hopper", "Nicholas Cage"];
 var triviaSolve2 = ["#answer2", "#answer4", "#answer2", "#answer2", "#answer3", "#answer3", "#answer4", "#answer3", "#answer3", "#answer2"];
 
+
+var gifs = [
+  0,
+  "https://thumbs.gfycat.com/LonelyNextHornshark-max-1mb.gif",
+  "https://media.giphy.com/media/EVQWoszCjUwW4/giphy.gif",
+  "https://media.giphy.com/media/DYUE5UEPNPQxq/giphy.gif",
+  "https://media.giphy.com/media/7YjcHwtOvCp7G/giphy.gif",
+  "https://thumbs.gfycat.com/BlankBoilingHoneycreeper-max-1mb.gif",
+  "https://media.giphy.com/media/kBWPbik51l6JW/giphy.gif",
+  "https://media.giphy.com/media/2dosfx99zInk1eWNG2/giphy.gif",
+  "http://66.media.tumblr.com/f6f809c42d97c402e5c2b9e1d5b09ee3/tumblr_mtc832ZZ941rhe069o1_500.gif",
+  "https://media.giphy.com/media/l0Iy3ZvNclKmPbnHy/giphy.gif",
+  "https://78.media.tumblr.com/f6f8a8f77a1eee9951d2dbe5f2b5660c/tumblr_n5ujlu55a81qanwe4o3_r2_250.gif"
+];
 
 // Show first question and first set of answer choices
 
@@ -73,6 +87,7 @@ var thisQuestion = 0;
 
 $("#start").on("click", startUp);
 
+
 function setQnA() {
   $("#question").text(triviaQ[thisQuestion]);
   $("#answer1").text(triviaA[thisQuestion].a);
@@ -84,10 +99,15 @@ function setQnA() {
   $("#answer2").attr("class", "list-group-item visible");
   $("#answer3").attr("class", "list-group-item visible");
   $("#answer4").attr("class", "list-group-item visible");
-  $("#message").attr("class", "list-group-item visible alert-warning");
   thisQuestion++;
   answerQuestion = thisQuestion - 1;
-}
+  $('img').remove();
+  $('#reset').remove();
+  $('#start').remove();
+  $('#messages').remove();
+  $('#images').remove();
+  $('#buttonSpace').remove();
+};
 
 function startUp() {
   if (!isRunning) {
@@ -162,8 +182,10 @@ function startUp() {
 
 $("#answer1").on("click", function() {
   if (thisQuestion < 10) {
-    $("#message").attr("class", "list-group-item visible alert-warning");
+    showMessage();
+    showImage();
     $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
+    showGif();
     setTimeout(function() {
       wrongAnswers++;
       time = 30;
@@ -172,19 +194,24 @@ $("#answer1").on("click", function() {
     }, 2000);
   } else {
     wrongAnswers++;
-    $("#message").attr("class", "list-group-item visible alert-warning");
+    showMessage();
+    showImage();
     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+    showGif();
     clearInterval(intervalId);
     clockRunning = false;
     $("#display").text("00:00");
+    resetButtonF();
   }
 });
 
 $("#answer2").on("click", function() {
   if (thisQuestion < 10) {
     if ((thisQuestion == 1) || (thisQuestion == 3) || (thisQuestion == 4) || (thisQuestion == 10)) {
-      $("#message").attr("class", "list-group-item visible alert-warning");
+      showMessage();
+      showImage();
       $("#messages").text("Correct! Way to go!");
+      showGif();
       setTimeout(function() {
         rightAnswers++;
         time = 30;
@@ -192,8 +219,10 @@ $("#answer2").on("click", function() {
         $("#messages").text("");
       }, 2000);
     } else {
-      $("#message").attr("class", "list-group-item visible alert-warning");
+      showMessage();
+      showImage();
       $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
+      showGif();
       setTimeout(function() {
         wrongAnswers++;
         time = 30;
@@ -203,19 +232,24 @@ $("#answer2").on("click", function() {
     };
   } else {
     rightAnswers++;
-    $("#message").attr("class", "list-group-item visible alert-warning");
+    showMessage();
+    showImage();
     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+    showGif();
     clearInterval(intervalId);
     clockRunning = false;
     $("#display").text("00:00");
+    resetButtonF();
   }
 });
 
 $("#answer3").on("click", function() {
   if (thisQuestion < 10) {
   if ((thisQuestion == 5) || (thisQuestion == 6) || (thisQuestion == 8) || (thisQuestion == 9)) {
-    $("#message").attr("class", "list-group-item visible alert-warning");
+    showMessage();
+    showImage();
     $("#messages").text("Correct! Way to go!");
+    showGif();
     setTimeout(function() {
       rightAnswers++;
       time = 30;
@@ -223,8 +257,10 @@ $("#answer3").on("click", function() {
       $("#messages").text("");
     }, 2000);
   } else {
-    $("#message").attr("class", "list-group-item visible alert-warning");
+    showMessage();
+    showImage();
     $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion]+ "!");
+    showGif();
     setTimeout(function() {
       wrongAnswers++;
       time = 30;
@@ -234,11 +270,14 @@ $("#answer3").on("click", function() {
   };
   } else {
     wrongAnswers++;
-    $("#message").attr("class", "list-group-item visible alert-warning");
+    showMessage();
+    showImage();
     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+    showGif();
     clearInterval(intervalId);
     clockRunning = false;
     $("#display").text("00:00");
+    resetButtonF();
   }
 });
 
@@ -246,8 +285,10 @@ $("#answer3").on("click", function() {
 $("#answer4").on("click", function() {
   if (thisQuestion < 10) {
   if ((thisQuestion == 2) || (thisQuestion == 7)) {
-    $("#message").attr("class", "list-group-item visible alert-warning");
+    showMessage();
+    showImage();
     $("#messages").text("Correct! Way to go!");
+    showGif();
     setTimeout(function() {
       rightAnswers++;
       time = 30;
@@ -255,8 +296,10 @@ $("#answer4").on("click", function() {
       $("#messages").text("");
     }, 2000);
   } else {
-    $("#message").attr("class", "list-group-item visible alert-warning");
+    showMessage();
+    showImage();
     $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
+    showGif();
     setTimeout(function() {
       wrongAnswers++;
       time = 30;
@@ -266,11 +309,14 @@ $("#answer4").on("click", function() {
   };
   } else {
     wrongAnswers++;
-    $("#message").attr("class", "list-group-item visible alert-warning");
+    showMessage();
+    showImage();
     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+    showGif();
     clearInterval(intervalId);
     clockRunning = false;
     $("#display").text("00:00");
+    resetButtonF();
   }
 });
 
@@ -305,11 +351,15 @@ $("#answer4").on("click", function() {
 // };
 
 function reset() {
-  time = 30;
+  // time = 30;
+  isRunning = false;
   $("#display").text("00:30");
+  $("#messages").text("");
+  rightAnswers = 0;
+  wrongAnswers = 0;
   thisQuestion = 0;
-  var rightAnswers = 0;
-  var wrongAnswers = 0;
+  // clearTimeout(time);
+  // timeOut();
   startUp();
 };
 
@@ -370,14 +420,45 @@ function timeConverter(t) {
   return minutes + ":" + seconds;
 };
 
-// if (time === 0) {
-//   setTimeout(function() {
-//     wrongAnswers++;
-//     setQnA();
-//     $("#messages").text("Time's up!");
-//   }, 2000);
-//   if (!isRunning) {
-//     intervalId = setInterval(count, 1000);
-//     isRunning = true;
-//   }
-// }
+function showGif() {
+  var imgURL = gifs[thisQuestion];
+  var image = $("<img>").attr("src", imgURL);
+  $("<img>").attr("class", "thumbnail rounded");
+  $('#images').append(image); 
+};
+
+function showMessage() {
+  var messageBox = $("<li>");
+  messageBox.attr("class", "list-group-item alert-warning alpha");
+  messageBox.attr("id", "messages");
+  $('.list-group').append(messageBox); 
+};
+
+function showImage() {
+  var imageBox = $("<li>");
+  imageBox.attr("class", "list-group-item alert-warning alpha");
+  imageBox.attr("id", "images");
+  $('.list-group').append(imageBox); 
+};
+
+function resetButtonF() {
+  var resetButton = $("<button>");
+  resetButton.attr("class", "quattro");
+  resetButton.attr("id", "reset");
+  resetButton.text("Reset");
+  resetButton.on("click", reset);
+  var spacer = $("<div>");
+  spacer.append(resetButton);
+  $('#display').append(spacer); 
+};
+
+function startButtonF() {
+  var startButton = $("<button>");
+  startButton.attr("class", "quattro");
+  startButton.attr("id", "reset");
+  startButton.text("Start");
+  startButton.on("click", startUp);
+  $('#buttonSpace').append(startButton); 
+};
+
+// $("#reset").on("click", reset);
