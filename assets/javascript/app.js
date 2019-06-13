@@ -84,7 +84,6 @@ function setQnA() {
   thisQuestion++;
   answerQuestion = thisQuestion - 1;
   $('img').remove();
-
   $('#start').remove();
   $('#messages').remove();
   $('#images').remove();
@@ -99,20 +98,13 @@ function startUp() {
     time = 30;
     intervalId = setInterval(count, 1000);
     isRunning = true;
-    // setQnA();
   }
 };
 
 
 function count() {
-  // if (time === 0) {
-    // clearTimeout(time);
-  //   timeOut();
-  // } else {
   if ((thisQuestion < 10) && (time === 0)) {
-
     wrongAnswers++;
-    // thisQuestion++;
     showMessage();
     showImage();
     showGif();
@@ -121,40 +113,25 @@ function count() {
     clearTimeout(intervalId);
     setTimeout(function() {
       console.log(thisQuestion);
- 
-
-
       startUp();
       setQnA();
     }, 2000);
 
-
   } else if ((thisQuestion === 10) && (time === 0)) {
-
     clearTimeout(intervalId);
     wrongAnswers++;
-    // thisQuestion++;
     showMessage();
     showImage();
     showGif();
     $("#messages").text("You ran out of time! The answer was " + triviaSolve[answerQuestion] + ". You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
     resetButtonF();
-  } else {
 
+  } else {
     time--;
     var converted = timeConverter(time);
     $("#display").text(converted);
   }
 };
-
-
-// function startUp() {
-//   if (!isRunning) {
-//     intervalId = setInterval(count, 1000);
-//     isRunning = true;
-//     setQnA();
-//   }
-// };
 
 $("#answer1").on("click", function() {
   if (thisQuestion < 10) {
@@ -162,7 +139,7 @@ $("#answer1").on("click", function() {
   } else {
     wrongAnswers++;
     finish();
-}
+  }
 });
 
 $("#answer2").on("click", function() {
@@ -185,10 +162,10 @@ $("#answer3").on("click", function() {
   } else {
     wrongAnswer();
   };
-} else {
-  wrongAnswers++;
-  finish();
-}
+  } else {
+    wrongAnswers++;
+    finish();
+  }
 });
 
 $("#answer4").on("click", function() {
@@ -198,10 +175,10 @@ $("#answer4").on("click", function() {
   } else {
     wrongAnswer();
   };
-} else {
-  wrongAnswers++;
-  finish();
-}
+  } else {
+    wrongAnswers++;
+    finish();
+  }
 });
 
 function rightAnswer() {
@@ -211,10 +188,8 @@ function rightAnswer() {
   showGif();
   setTimeout(function() {
     rightAnswers++;
-    // thisQuestion++;
     isRunning = false;
     clearTimeout(intervalId);
-
     startUp();
     setQnA();
     $("#messages").text("");
@@ -228,7 +203,6 @@ function wrongAnswer() {
   $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
   setTimeout(function() {
     wrongAnswers++;
-    // thisQuestion++;
     isRunning = false;
     clearTimeout(intervalId);
     startUp();
@@ -238,7 +212,6 @@ function wrongAnswer() {
 };
 
 function finish() {
-  // rightAnswers++;
   showMessage();
   showImage();
   showGif();
@@ -259,36 +232,6 @@ function reset() {
   setQnA();
   startUp();
 };
-
-
-
-
-
-// function timeOut() {
-//   if (thisQuestion < 10) {
-//     $("#messages").text("You ran out of time!");
-//     setTimeout(function() {
-//       wrongAnswers++;
-//       setQnA();
-//       $("#messages").text("");
-//     }, 2000);
-//     time = 30;
-//     $("#display").text("00:30");
-//   } else {
-//     setTimeout(function() {
-//       wrongAnswers++;
-//       setQnA();
-//       $("#messages").text("");
-//     }, 2000);
-//     // time = 30;
-//     // $("#display").text("00:30");
-//     $("#message").attr("class", "list-group-item visible alert-warning");
-//     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
-//     clearInterval(intervalId);
-//     clockRunning = false;
-//     $("#display").text("00:00");
-//   }
-// };
 
 function timeConverter(t) {
   var minutes = Math.floor(t / 60);
