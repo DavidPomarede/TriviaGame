@@ -2,13 +2,8 @@ document.body.style.backgroundImage = "url('assets/images/memphis-colorful.png')
 
 var intervalId;
 var clockRunning = false;
-var time = 30;
-var lap = 1;
+var time = 0;
 
-answer1is = "";
-answer2is = "";
-answer3is = "";
-answer4is = "";
 
 var triviaQ = [
   "1) What is the name of the villain in the first Superman movie (1980) played by Gene Hackman?",
@@ -71,8 +66,9 @@ var isRunning = false;
 var rightAnswers = 0;
 var wrongAnswers = 0;
 var thisQuestion = 0;
+var answerQuestion;
 
-$("#start").on("click", startUp);
+$("#start").on("click", both);
 
 function setQnA() {
   $("#question").text(triviaQ[thisQuestion]);
@@ -88,37 +84,96 @@ function setQnA() {
   thisQuestion++;
   answerQuestion = thisQuestion - 1;
   $('img').remove();
-  $('#reset').remove();
+
   $('#start').remove();
   $('#messages').remove();
   $('#images').remove();
   $('#buttonSpace').remove();
+  if (thisQuestion !== 10) {
+    $('#reset').remove();
+  };
 };
 
 function startUp() {
   if (!isRunning) {
+    time = 30;
     intervalId = setInterval(count, 1000);
     isRunning = true;
-    setQnA();
+    // setQnA();
   }
 };
+
+
+function count() {
+  // if (time === 0) {
+    // clearTimeout(time);
+  //   timeOut();
+  // } else {
+  if ((thisQuestion < 10) && (time === 0)) {
+
+    wrongAnswers++;
+    // thisQuestion++;
+    showMessage();
+    showImage();
+    showGif();
+    $("#messages").text("You ran out of time! The answer was " + triviaSolve[answerQuestion] + "!");
+    isRunning = false;
+    clearTimeout(intervalId);
+    setTimeout(function() {
+      console.log(thisQuestion);
+ 
+
+
+      startUp();
+      setQnA();
+    }, 2000);
+
+
+  } else if ((thisQuestion === 10) && (time === 0)) {
+
+    clearTimeout(intervalId);
+    wrongAnswers++;
+    // thisQuestion++;
+    showMessage();
+    showImage();
+    showGif();
+    $("#messages").text("You ran out of time! The answer was " + triviaSolve[answerQuestion] + ". You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+    resetButtonF();
+  } else {
+
+    time--;
+    var converted = timeConverter(time);
+    $("#display").text(converted);
+  }
+};
+
+
+// function startUp() {
+//   if (!isRunning) {
+//     intervalId = setInterval(count, 1000);
+//     isRunning = true;
+//     setQnA();
+//   }
+// };
 
 $("#answer1").on("click", function() {
   if (thisQuestion < 10) {
     wrongAnswer();
   } else {
+    wrongAnswers++;
     finish();
 }
 });
 
 $("#answer2").on("click", function() {
   if (thisQuestion < 10) {
-    if ((thisQuestion == 1) || (thisQuestion == 3) || (thisQuestion == 4) || (thisQuestion == 10)) {
+    if ((thisQuestion == 1) || (thisQuestion == 3) || (thisQuestion == 4)) {
       rightAnswer();
     } else {
       wrongAnswer();
     };
-  } else {
+  } else if (thisQuestion == 10) {
+    rightAnswers++;
     finish();
   }
 });
@@ -131,6 +186,7 @@ $("#answer3").on("click", function() {
     wrongAnswer();
   };
 } else {
+  wrongAnswers++;
   finish();
 }
 });
@@ -143,6 +199,7 @@ $("#answer4").on("click", function() {
     wrongAnswer();
   };
 } else {
+  wrongAnswers++;
   finish();
 }
 });
@@ -154,7 +211,11 @@ function rightAnswer() {
   showGif();
   setTimeout(function() {
     rightAnswers++;
-    time = 30;
+    // thisQuestion++;
+    isRunning = false;
+    clearTimeout(intervalId);
+
+    startUp();
     setQnA();
     $("#messages").text("");
   }, 2000);
@@ -163,22 +224,25 @@ function rightAnswer() {
 function wrongAnswer() {
   showMessage();
   showImage();
-  $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
   showGif();
+  $("#messages").text("Wrong answer! The answer was " + triviaSolve[answerQuestion] + "!");
   setTimeout(function() {
     wrongAnswers++;
-    time = 30;
+    // thisQuestion++;
+    isRunning = false;
+    clearTimeout(intervalId);
+    startUp();
     setQnA();
     $("#messages").text("");
   }, 2000);
 };
 
 function finish() {
-  rightAnswers++;
+  // rightAnswers++;
   showMessage();
   showImage();
-  $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
   showGif();
+  $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
   clearInterval(intervalId);
   clockRunning = false;
   $("#display").text("00:00");
@@ -192,50 +256,39 @@ function reset() {
   rightAnswers = 0;
   wrongAnswers = 0;
   thisQuestion = 0;
+  setQnA();
   startUp();
 };
 
-function stop() {
-  clearInterval(intervalId);
-  clockRunning = false;
-};
 
-function count() {
-  if (time === 0) {
-    clearTimeout(time);
-    timeOut();
-  } else {
-  time--;
-  var converted = timeConverter(time);
-  $("#display").text(converted);
-  }
-};
 
-function timeOut() {
-  if (thisQuestion < 10) {
-    $("#messages").text("You ran out of time!");
-    setTimeout(function() {
-      wrongAnswers++;
-      setQnA();
-      $("#messages").text("");
-    }, 2000);
-    time = 30;
-    $("#display").text("00:30");
-  } else {
-    setTimeout(function() {
-      wrongAnswers++;
-      setQnA();
-      $("#messages").text("");
-    }, 2000);
-    time = 30;
-    $("#display").text("00:30");
-    $("#message").attr("class", "list-group-item visible alert-warning");
-    $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
-    clearInterval(intervalId);
-    clockRunning = false;
-    $("#display").text("00:00");
-  }
-};
+
+
+// function timeOut() {
+//   if (thisQuestion < 10) {
+//     $("#messages").text("You ran out of time!");
+//     setTimeout(function() {
+//       wrongAnswers++;
+//       setQnA();
+//       $("#messages").text("");
+//     }, 2000);
+//     time = 30;
+//     $("#display").text("00:30");
+//   } else {
+//     setTimeout(function() {
+//       wrongAnswers++;
+//       setQnA();
+//       $("#messages").text("");
+//     }, 2000);
+//     // time = 30;
+//     // $("#display").text("00:30");
+//     $("#message").attr("class", "list-group-item visible alert-warning");
+//     $("#messages").text("Finished! You got " + rightAnswers + " answers right and " + wrongAnswers + " answers wrong.");
+//     clearInterval(intervalId);
+//     clockRunning = false;
+//     $("#display").text("00:00");
+//   }
+// };
 
 function timeConverter(t) {
   var minutes = Math.floor(t / 60);
@@ -284,11 +337,16 @@ function resetButtonF() {
   $('#display').append(spacer); 
 };
 
+function both() {
+  setQnA();
+  startUp();
+}
+
 function startButtonF() {
   var startButton = $("<button>");
   startButton.attr("class", "quattro");
   startButton.attr("id", "reset");
   startButton.text("Start");
-  startButton.on("click", startUp);
+  startButton.on("click", both);
   $('#buttonSpace').append(startButton); 
 };
